@@ -3,7 +3,7 @@ import os
 import math
 import numpy as np
 import pytest
-from . import ws
+from pywavesurfer import ws
 
 
 def test_loading_file():
