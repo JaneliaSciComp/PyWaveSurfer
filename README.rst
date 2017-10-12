@@ -1,9 +1,28 @@
 PyWaveSurfer
 ============
 
-PyWaveSurfer is a Python package for reading WaveSurfer data into 
-Python.
+PyWaveSurfer is a Python package for reading data acquired using WaveSurfer.
 
+
+See the `official site <http://wavesurfer.janelia.org/>`_ for more information about WaveSurfer.
+
+
+Example usage
+-------------
+
+.. code-block:: python
+
+    from pywavesurfer import ws
+    # to get analog channels scaled in float64 :
+    data_as_dict = ws.loadDataFile(filename='path/to/file.h5', format_string='double' )
+    # to get analog channels scaled in float32:
+    data_as_dict = ws.loadDataFile(filename='path/to/file.h5', format_string='single' )
+    # to get the raw analog channels in int16:
+    data_as_dict = ws.loadDataFile(filename='path/to/file.h5', format_string='raw' )
+
+
+Description of the content can be found in the documentation
+`here <http://wavesurfer.janelia.org/manual/index.html#reading-acquired-data>`_.
 
 Copyright
 ---------
