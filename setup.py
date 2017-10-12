@@ -14,10 +14,10 @@ with open(path.join(here, 'requirements-dev.txt'), encoding='utf-8') as f:
     requires_dev = f.read().splitlines()
 
 setup(
-    name='pySparkUtils',
-    packages=find_packages(exclude=['+ws', 'matlab-zmq', 'trenches', 'zeromq-4.1.3']),
+    name='pywavesurfer',
+    packages=['pywavesurfer'],
     version='0.0.1',
-    description="Python implementation for reading WaveSurfer files",
+    description="Python package for reading WaveSurfer data files",
     long_description=long_description,
     author='Adam L. Taylor, Boaz Mohar',
     author_email='taylora@janelia.hhmi.org, boazmohar@gmail.com',
