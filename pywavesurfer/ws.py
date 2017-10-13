@@ -1,6 +1,6 @@
 import os
 import math
-import numpy
+import numpy as np
 import h5py
 
 
@@ -41,7 +41,7 @@ def loadDataFile(filename, format_string='double'):
                 nominal_n_timebase_ticks_per_sample):  # should use the python round, not numpy round
             actual_acquisition_sample_rate = 100.0e6 / math.floor(
                 nominal_n_timebase_ticks_per_sample)  # sic: the boards floor() for acq, but round() for stim
-            header["Acquisition"]["SampleRate"] = numpy.array(actual_acquisition_sample_rate)
+            header["Acquisition"]["SampleRate"] = np.array(actual_acquisition_sample_rate)
             data_file_as_dict["header"] = header
         # Fix the stimulation sample rate, if needed
         nominal_stimulation_sample_rate = float(header["Stimulation"]["SampleRate"])
@@ -49,7 +49,7 @@ def loadDataFile(filename, format_string='double'):
         if nominal_n_timebase_ticks_per_sample != round(nominal_n_timebase_ticks_per_sample):
             actual_stimulation_sample_rate = 100.0e6 / round(
                 nominal_n_timebase_ticks_per_sample)  # sic: the boards floor() for acq, but round() for stim
-            header["Stimulation"]["SampleRate"] = numpy.array(actual_stimulation_sample_rate)
+            header["Stimulation"]["SampleRate"] = np.array(actual_stimulation_sample_rate)
             data_file_as_dict["header"] = header
 
     # If needed, use the analog scaling coefficients and scales to convert the
@@ -170,13 +170,13 @@ def scaled_double_analog_data_from_raw(data_as_ADC_counts, channel_scales, scali
 
     inverse_channel_scales = 1.0 / channel_scales  # if some channel scales are zero, this will lead to nans and/or infs
     n_channels = channel_scales.size
-    scaled_data = numpy.empty(data_as_ADC_counts.shape)
+    scaled_data = np.empty(data_as_ADC_counts.shape)
     for i in range(0, n_channels):
-        scaled_data[i, :] = inverse_channel_scales[i] * numpy.polyval(numpy.flipud(scaling_coefficients[i, :]),
-                                                                      data_as_ADC_counts[i, :])
+        scaled_data[i, :] = inverse_channel_scales[i] * np.polyval(np.flipud(scaling_coefficients[i, :]),
+                                                                   data_as_ADC_counts[i, :])
     return scaled_data
 
 
-def scaled_single_analog_data_from_raw(dataAsADCCounts, channelScales, scalingCoefficients):
-    scaledData = scaled_double_analog_data_from_raw(dataAsADCCounts, channelScales, scalingCoefficients)
-    return scaledData.astype('single')
+def scaled_single_analog_data_from_raw(data_as_ADC_counts, channel_scales, scaling_coefficients):
+    scaled_data = scaled_double_analog_data_from_raw(data_as_ADC_counts, channel_scales, scaling_coefficients)
+    return scaled_data.astype('single')
