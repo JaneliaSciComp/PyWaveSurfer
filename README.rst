@@ -1,6 +1,10 @@
 PyWaveSurfer
 ============
 
+
+|Build Status| |PyPI version| |Updates| |Cover|
+
+
 PyWaveSurfer is a Python package for reading data acquired using WaveSurfer.
 
 
@@ -82,3 +86,13 @@ Version History
 ---------------
 
 0.0.1    Oct 11, 2017    Initial release.
+
+
+.. |Updates| image:: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/shield.svg
+   :target: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/
+.. |Build Status| image:: https://travis-ci.org/JaneliaSciComp/PyWaveSurfer.svg?branch=master
+   :target: https://travis-ci.org/JaneliaSciComp/PyWaveSurfer
+.. |PyPI version| image:: https://badge.fury.io/py/pywavesurfer.svg
+   :target: https://badge.fury.io/py/pywavesurfer
+.. |Cover| image:: https://coveralls.io/repos/github/JaneliaSciComp/PyWaveSurfer/badge.svg?branch=master
+   :target: https://coveralls.io/github/JaneliaSciComp/PyWaveSurfer?branch=master
