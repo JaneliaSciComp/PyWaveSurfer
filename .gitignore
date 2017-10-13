@@ -58,3 +58,8 @@ launch_satellite_engine/bin/launch_satellite_engine.exe
 \.coverage
 
 \.idea/
+
+
+build/
+dist/
+pywavesurfer.egg-info/
