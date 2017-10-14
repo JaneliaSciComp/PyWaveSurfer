@@ -3,6 +3,12 @@ import math
 import numpy as np
 import h5py
 
+# the latest version pywavesurfer was tested against
+_latest_version = 0.953
+
+# from pywavesurfer.ws import * will only import loadDataFile
+__all__ = ['loadDataFile']
+
 
 def loadDataFile(filename, format_string='double'):
     """ Loads Wavesurfer data file.
@@ -30,6 +36,9 @@ def loadDataFile(filename, format_string='double'):
     if "VersionString" in header:
         version_string = header["VersionString"]  # this is a scalar numpy array with a weird datatype
         version = float(version_string.tostring().decode('utf-8'))
+        if version > _latest_version:
+            raise RuntimeWarning('You are reading a WaveSurfer file version this module was not tested with: '
+                                 'file version %f, latest version tested: %f' % (version, _latest_version))
     else:
         # If no VersionsString field, the file is from an old old version
         version = 0

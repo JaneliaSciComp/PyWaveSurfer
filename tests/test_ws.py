@@ -165,6 +165,15 @@ def test_loading_0p933_file():
     assert np.allclose(x.mean(axis=1), np.array([2.49962616]))
 
 
+def test_version_higher_then_latest():
+    this_file_path = os.path.realpath(__file__)
+    this_dir_name = os.path.dirname(this_file_path)
+    file_name = os.path.join(this_dir_name, 'ws_v100_data.h5')
+    with pytest.raises(RuntimeWarning) as ex:
+        _ = ws.loadDataFile(file_name)
+    assert 'You are reading a WaveSurfer file version this module was not' in str(ex.value)
+
+
 def test_identity_function_on_vector():
     fs = 20000.0  # Hz
     dt = 1 / fs  # s
