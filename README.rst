@@ -87,6 +87,8 @@ Version History
 
 0.0.1    Oct 11, 2017    Initial release.
 
+0.0.2    Oct 14, 2017    Added a check for WS version.
+
 
 .. |Updates| image:: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/shield.svg
    :target: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/
