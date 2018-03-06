@@ -1,7 +1,7 @@
 bumpversion==0.5.3
 h5py==2.7.1
 numpy==1.14.1
-pytest==3.4.1
+pytest==3.4.2
 pytest-pep8==1.0.6
 pytest-cov==2.5.1
 coveralls==1.2.0
