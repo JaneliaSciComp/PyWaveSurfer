@@ -1,5 +1,5 @@
 bumpversion==0.5.3
-h5py==2.7.1
+h5py==2.8.0
 numpy==1.14.3
 pytest==3.6.0
 pytest-pep8==1.0.6
