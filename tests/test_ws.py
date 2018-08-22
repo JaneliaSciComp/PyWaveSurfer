@@ -165,6 +165,26 @@ def test_loading_0p933_file():
     assert np.allclose(x.mean(axis=1), np.array([2.49962616]))
 
 
+def test_loading_0p97_file():
+    this_file_path = os.path.realpath(__file__)
+    this_dir_name = os.path.dirname(this_file_path)
+    file_name = os.path.join(this_dir_name, 'ws_0p97_data_0001.h5')
+    dataAsDict = ws.loadDataFile(file_name)
+    acq_sampling_rate = float(dataAsDict['header']['AcquisitionSampleRate'])
+    assert acq_sampling_rate == 20e3
+    n_a_i_channels = dataAsDict['header']['AIChannelScales'].size
+    assert n_a_i_channels == 1
+    n_active_a_i_channels = int(dataAsDict['header']['IsAIChannelActive'].sum())
+    assert n_active_a_i_channels == 1
+    stim_sampling_rate = dataAsDict['header']['StimulationSampleRate']
+    assert stim_sampling_rate == 20e3
+    x = dataAsDict['sweep_0001']['analogScans']
+    assert x.dtype == 'float64'
+    assert np.absolute(np.max(x[0]) - 5) < 0.01
+    assert np.absolute(np.min(x[0]) - 0) < 0.01
+    assert np.allclose(x.mean(axis=1), np.array([2.50221981]))
+
+
 def test_version_higher_then_latest():
     this_file_path = os.path.realpath(__file__)
     this_dir_name = os.path.dirname(this_file_path)

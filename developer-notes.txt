@@ -43,6 +43,11 @@ To bump version
 To run automated tests
 ----------------------
 
+0. Do
+
+       pip install --user pytest
+       pip install --user pytest-pep8
+
 1. Change directory to pywavesurfer
 
 2. Run: pytest --pep8
