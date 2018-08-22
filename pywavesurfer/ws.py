@@ -4,7 +4,7 @@ import numpy as np
 import h5py
 
 # the latest version pywavesurfer was tested against
-_latest_version = 0.953
+_latest_version = 0.97
 
 # from pywavesurfer.ws import * will only import loadDataFile
 __all__ = ['loadDataFile']

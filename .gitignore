@@ -63,3 +63,4 @@ launch_satellite_engine/bin/launch_satellite_engine.exe
 build/
 dist/
 pywavesurfer.egg-info/
+.pytest_cache
