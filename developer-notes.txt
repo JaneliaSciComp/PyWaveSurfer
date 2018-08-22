@@ -1,4 +1,4 @@
-Users: This files contains information for the Wavesurfer
+Users: This files contains information for the PyWaveSurfer
 developer(s).  You can safely ignore it.
 
 
@@ -49,7 +49,7 @@ To run automated tests
 
 
 
-pyWavesurfer coding/development conventions
+PyWaveSurfer coding/development conventions
 -----------------------------------------
 
 As much as possible please adhere to PEP8.
