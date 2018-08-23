@@ -89,8 +89,7 @@ Version History
 
 0.0.2    Oct 14, 2017    Added a check for WS version.
 
-0.0.3    Aug 23, 2018    Added test for WS 0.97 data files, changed an
-                         exception to a warning, updated dependencies.
+0.0.3    Aug 23, 2018    Added test for WS 0.97 data files, changed an exception to a warning, updated dependencies.
 
 
 .. |Updates| image:: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/shield.svg
