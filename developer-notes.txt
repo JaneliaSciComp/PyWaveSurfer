@@ -47,6 +47,7 @@ To run automated tests
 
        pip install --user pytest
        pip install --user pytest-pep8
+       pip install --user pytest-coverage
 
 1. Change directory to pywavesurfer
 
