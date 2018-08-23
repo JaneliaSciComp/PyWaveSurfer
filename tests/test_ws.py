@@ -189,9 +189,12 @@ def test_version_higher_then_latest():
     this_file_path = os.path.realpath(__file__)
     this_dir_name = os.path.dirname(this_file_path)
     file_name = os.path.join(this_dir_name, 'ws_v100_data.h5')
-    with pytest.raises(RuntimeWarning) as ex:
+    with pytest.warns(RuntimeWarning) as record:
         _ = ws.loadDataFile(file_name)
-    assert 'You are reading a WaveSurfer file version this module was not' in str(ex.value)
+    # check that only one warning was raised
+    assert len(record) == 1
+    # check that the message matches
+    assert 'You are reading a WaveSurfer file version this module was not' in record[0].message.args[0]
 
 
 def test_identity_function_on_vector():

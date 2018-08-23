@@ -2,6 +2,7 @@ import os
 import math
 import numpy as np
 import h5py
+import warnings
 
 # the latest version pywavesurfer was tested against
 _latest_version = 0.97
@@ -37,8 +38,8 @@ def loadDataFile(filename, format_string='double'):
         version_string = header["VersionString"]  # this is a scalar numpy array with a weird datatype
         version = float(version_string.tostring().decode('utf-8'))
         if version > _latest_version:
-            raise RuntimeWarning('You are reading a WaveSurfer file version this module was not tested with: '
-                                 'file version %f, latest version tested: %f' % (version, _latest_version))
+            warnings.warn('You are reading a WaveSurfer file version this module was not tested with: '
+                          'file version %f, latest version tested: %f' % (version, _latest_version), RuntimeWarning)
     else:
         # If no VersionsString field, the file is from an old old version
         version = 0
