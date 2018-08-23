@@ -1,4 +1,4 @@
-Users: This files contains information for the Wavesurfer
+Users: This files contains information for the PyWaveSurfer
 developer(s).  You can safely ignore it.
 
 
@@ -6,18 +6,48 @@ developer(s).  You can safely ignore it.
 To bump version
 ---------------
 
-1. Run: bumpversion patch (or 'minor' or 'major' following: major.minor.patch)
+0. pip install --user bumpversion
 
-2. Add a paragraph to the README about the new release.
+   This installs the bumpversion command-line tool for the current user.
 
-3. Run: python setup.py sdist
+1. Checkout the release branch, merge develop branch into it.
 
-4. Run: twine upload dist\pywaveserfer{version}
+2. Run: bumpversion patch (or 'minor' or 'major' following:
+   major.minor.patch)
+
+   This modifies the setup.py file in the root of the repo.  It also
+   changes .bumpversion.cfg to reflect the new version.  ***It then
+   does a git commit of these changes, with a comment
+   like "Bump version: 0.0.2 -> 0.0.3".***  (That's why you should be
+   on a release branch before you do this.)
+
+3. Add a paragraph to the README about the new release.
+
+4. Commit to the release branch, then switch over to master, and merge
+   in the release branch.
+
+5. Run: python3 setup.py sdist
+
+   Runs the setup.py script that got updated in the "bumpversion" step
+   above.  This creates/updates the dist folder and the
+   pywavesurfer.egg-info folders, which contain a packaged version of
+   the pywavesurfer module, ready for uploading to PyPI, and some
+   metadata pertaining to it.  
+
+6. Run: twine upload dist\pywaveserfer{version}
+
+   This uploads the module to PyPI.
 
 
 
 To run automated tests
 ----------------------
+
+0. Do
+
+       pip install --user pytest
+       pip install --user pytest-pep8
+       pip install --user pytest-coverage
 
 1. Change directory to pywavesurfer
 
@@ -27,7 +57,7 @@ To run automated tests
 
 
 
-pyWavesurfer coding/development conventions
+PyWaveSurfer coding/development conventions
 -----------------------------------------
 
 As much as possible please adhere to PEP8.

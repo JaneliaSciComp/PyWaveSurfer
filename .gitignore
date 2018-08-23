@@ -55,11 +55,12 @@ launch_satellite_engine/bin/launch_satellite_engine.exe
 *.cache
 *.pyc
 
-\.coverage
-
-\.idea/
+.idea/
 
 
 build/
 dist/
 pywavesurfer.egg-info/
+.pytest_cache
+htmlcov/
+.coverage
