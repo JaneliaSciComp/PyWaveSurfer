@@ -64,3 +64,7 @@ pywavesurfer.egg-info/
 .pytest_cache
 htmlcov/
 .coverage
+
+\.DS_Store
+
+\.vscode/
