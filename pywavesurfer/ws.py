@@ -51,19 +51,13 @@ def loadDataFile(filename, format_string='double'):
     else:
         # If no VersionsString field, the file is from an old old version
         parsed_version = parse_version('0.0')
-    print(parsed_version.public)
     if parsed_version not in _over_version_1 and parsed_version.release is not None:
         version_string = str(parsed_version.release[1])
         ver_len = len(version_string)
-        print(version_string)
-        print(ver_len)
-        print(int(version_string[0]) < 9)
-        print((ver_len > 2 and int(version_string[1]) < 1) )
         if  int(version_string[0]) < 9 or \
         (ver_len >=2 and int(version_string[1]) < 1) or \
             (ver_len >= 3 and int(version_string[1]) <= 1 and int(version_string[2]) <= 2):  # version 0.912 has the problem, version 0.913 does not
             # Fix the acquisition sample rate, if needed
-            print('!!!')
             nominal_acquisition_sample_rate = float(header["Acquisition"]["SampleRate"])
             nominal_n_timebase_ticks_per_sample = 100.0e6 / nominal_acquisition_sample_rate
             if nominal_n_timebase_ticks_per_sample != round(
