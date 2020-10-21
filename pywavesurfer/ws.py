@@ -38,25 +38,26 @@ def loadDataFile(filename, format_string='double'):
     # of WS which didn't coerce the sampling rate to an allowed rate.
     header = data_file_as_dict["header"]
     if "VersionString" in header:
-        version_numpy= header["VersionString"]  # this is a scalar numpy array with a weird datatype
+        version_numpy = header["VersionString"]  # this is a scalar numpy array with a weird datatype
         version = version_numpy.tostring().decode("utf-8")
         parsed_version = parse_version(version)
         if parsed_version in _over_version_1:
             if parsed_version > parse_version(str(_latest_version)):
                 warnings.warn('You are reading a WaveSurfer file version this module was not tested with: '
-                            'file version %s, latest version tested: %s' % (parsed_version.public, parse_version(str(_latest_version)).public), RuntimeWarning)
+                              'file version %s, latest version tested: %s'
+                              % (parsed_version.public, parse_version(str(_latest_version)).public), RuntimeWarning)
         elif float(version) > _latest_version:
-                 warnings.warn('You are reading a WaveSurfer file version this module was not tested with: '
-                            'file version %s, latest version tested: %s' % (version, _latest_version), RuntimeWarning)
+            warnings.warn('You are reading a WaveSurfer file version this module was not tested with: '
+                          'file version %s, latest version tested: %s' % (version, _latest_version), RuntimeWarning)
     else:
         # If no VersionsString field, the file is from an old old version
         parsed_version = parse_version('0.0')
+    # version 0.912 has the problem, version 0.913 does not
     if parsed_version not in _over_version_1 and parsed_version.release is not None:
         version_string = str(parsed_version.release[1])
         ver_len = len(version_string)
-        if  int(version_string[0]) < 9 or \
-        (ver_len >=2 and int(version_string[1]) < 1) or \
-            (ver_len >= 3 and int(version_string[1]) <= 1 and int(version_string[2]) <= 2):  # version 0.912 has the problem, version 0.913 does not
+        if int(version_string[0]) < 9 or (ver_len >= 2 and int(version_string[1]) < 1) or \
+           (ver_len >= 3 and int(version_string[1]) <= 1 and int(version_string[2]) <= 2):
             # Fix the acquisition sample rate, if needed
             nominal_acquisition_sample_rate = float(header["Acquisition"]["SampleRate"])
             nominal_n_timebase_ticks_per_sample = 100.0e6 / nominal_acquisition_sample_rate
