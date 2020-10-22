@@ -23,7 +23,7 @@ install:
   - pip install -r requirements-dev.txt
 
 script:
-  - py.test -s -v --cov-config .coveragerc --cov=pywavesurfer --pep8
+  - py.test -s -v --cov-config .coveragerc --cov=pywavesurfer --flake8
 
 after_success:
   - coveralls
