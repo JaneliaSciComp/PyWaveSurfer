@@ -46,14 +46,14 @@ To run automated tests
 0. Do
 
        pip install --user pytest
-       pip install --user pytest-pep8
+       pip install --user pytest-flake8
        pip install --user pytest-coverage
 
 1. Change directory to pywavesurfer
 
-2. Run: pytest --pep8
+2. Run: pytest --flake8
 
-3. To see coverage run: pytest --pep8 --cov=pywavesurfer --cov-report html
+3. To see coverage run: pytest --flake8 --cov=pywavesurfer --cov-report html
 
 
 
