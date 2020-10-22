@@ -24,10 +24,11 @@ setup(
     url='https://github.com/JaneliaSciComp/PyWaveSurfer',
     download_url='https://github.com/JaneliaSciComp/PyWaveSurfer/archive/v0.0.3.tar.gz',
     classifiers=['Development Status :: 3 - Alpha',
-                 'Programming Language :: Python :: 2',
-                 'Programming Language :: Python :: 2.7',
                  'Programming Language :: Python :: 3',
                  'Programming Language :: Python :: 3.6',
+                 'Programming Language :: Python :: 3.7',
+                 'Programming Language :: Python :: 3.8',
+                 'Programming Language :: Python :: 3.9',
                  ],
     install_requires=requires,
     extras_require={
