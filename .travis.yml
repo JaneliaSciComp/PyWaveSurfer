@@ -6,7 +6,7 @@ python:
   - "3.8"
   - "3.9"
 
-dist: trusty
+dist: xenial
 
 sudo: false
 
