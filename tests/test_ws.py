@@ -185,10 +185,10 @@ def test_loading_0p97_file():
     assert np.allclose(x.mean(axis=1), np.array([2.50221981]))
 
 
-def test_version_higher_then_latest():
+def test_version_higher():
     this_file_path = os.path.realpath(__file__)
     this_dir_name = os.path.dirname(this_file_path)
-    file_name = os.path.join(this_dir_name, 'ws_v100_data.h5')
+    file_name = os.path.join(this_dir_name, 'ws_v1p0p2_data.h5')
     with pytest.warns(RuntimeWarning) as record:
         _ = ws.loadDataFile(file_name)
     # check that only one warning was raised

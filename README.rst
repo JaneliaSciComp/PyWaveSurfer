@@ -91,6 +91,7 @@ Version History
 
 0.0.3    Aug 23, 2018    Added test for WS 0.97 data files, changed an exception to a warning, updated dependencies.
 
+0.0.5    Oct 22, 2020    Added test for WS 1.0.2 data files, fixed version checking bug, updated dependencies, drop python 2.
 
 .. |Updates| image:: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/shield.svg
    :target: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/
