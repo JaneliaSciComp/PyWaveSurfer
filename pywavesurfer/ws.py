@@ -39,7 +39,7 @@ def loadDataFile(filename, format_string='double'):
     header = data_file_as_dict["header"]
     if "VersionString" in header:
         version_numpy = header["VersionString"]  # this is a scalar numpy array with a weird datatype
-        version = version_numpy.tostring().decode("utf-8")
+        version = version_numpy.tobytes().decode("utf-8")
         parsed_version = parse_version(version)
         if parsed_version in _over_version_1:
             if parsed_version > parse_version(str(_latest_version)):

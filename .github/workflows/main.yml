@@ -29,19 +29,14 @@ jobs:
         python-version: ["3.7", "3.8", "3.9"]
     steps:
       - uses: actions/checkout@v2
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: actions/setup-python@v2
         with:
-          auto-update-conda: true
           python-version: ${{ matrix.python-version }}
-      - name: Conda install
-        shell: bash
-        run: |
-          conda install pip pytest numpy
+      - run: |
           pip install -r requirements-dev.txt
-      - name: py_test
-        shell: bash
-        run: py.test -s -v --cov-config .coveragerc --cov=pywavesurfer --flake8
+          py.test -s -v --cov-config .coveragerc --cov=pywavesurfer --flake8
       - name: Coveralls Parallel
+        if: matrix.os == 'ubuntu-latest'
         uses: AndreMiras/coveralls-python-action@develop
         with:
           github-token: ${{ secrets.github_token }}
