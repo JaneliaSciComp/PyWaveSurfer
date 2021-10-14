@@ -93,6 +93,8 @@ Version History
 
 0.0.5    Oct 22, 2020    Added test for WS 1.0.2 data files, fixed version checking bug, updated dependencies, drop python 2.
 
+0.0.6    Oct 14, 2021    Updated dependencies, drop python 3.6, added 3.9. Moved CI/CD to Github Actions.
+
 .. |Updates| image:: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/shield.svg
    :target: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/
 .. |Build Status| image:: https://travis-ci.org/JaneliaSciComp/PyWaveSurfer.svg?branch=master
