@@ -36,6 +36,7 @@ jobs:
           pip install -r requirements-dev.txt
           py.test -s -v --cov-config .coveragerc --cov=pywavesurfer --flake8
       - name: Coveralls Parallel
+        if: matrix.os == 'ubuntu-latest'
         uses: AndreMiras/coveralls-python-action@develop
         with:
           github-token: ${{ secrets.github_token }}
