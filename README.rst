@@ -97,8 +97,8 @@ Version History
 
 .. |Updates| image:: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/shield.svg
    :target: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/
-.. |Build Status| image:: https://travis-ci.org/JaneliaSciComp/PyWaveSurfer.svg?branch=master
-   :target: https://travis-ci.org/JaneliaSciComp/PyWaveSurfer
+.. |Build Status| image:: https://github.com/JaneliaSciComp/PyWaveSurfer/actions/workflows/main.yml/badge.svg
+   :target: https://github.com/JaneliaSciComp/PyWaveSurfer/actions/workflows/main.yml
 .. |PyPI version| image:: https://badge.fury.io/py/pywavesurfer.svg
    :target: https://badge.fury.io/py/pywavesurfer
 .. |Cover| image:: https://coveralls.io/repos/github/JaneliaSciComp/PyWaveSurfer/badge.svg?branch=master
