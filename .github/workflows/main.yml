@@ -42,7 +42,7 @@ jobs:
         shell: bash
         run: py.test -s -v --cov-config .coveragerc --cov=pywavesurfer --flake8
       - name: Coveralls Parallel
-        uses: coverallsapp/github-action@master
+        uses: AndreMiras/coveralls-python-action@develop
         with:
           github-token: ${{ secrets.github_token }}
           flag-name: run-(${{ matrix.python-version }}, ${{ matrix.os }})
@@ -53,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Coveralls Finished
-      uses: coverallsapp/github-action@master
+      uses: AndreMiras/coveralls-python-action@develop
       with:
         github-token: ${{ secrets.github_token }}
         parallel-finished: true
