@@ -95,6 +95,8 @@ Version History
 
 0.0.6    Oct 14, 2021    Updated dependencies, drop python 3.6, added 3.9. Moved CI/CD to Github Actions.
 
+0.0.7    Oct 14, 2021    Updated dependencies, added context manager to h5py open.
+
 .. |Updates| image:: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/shield.svg
    :target: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/
 .. |Build Status| image:: https://github.com/JaneliaSciComp/PyWaveSurfer/actions/workflows/main.yml/badge.svg
