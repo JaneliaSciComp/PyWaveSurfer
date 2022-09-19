@@ -34,7 +34,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: |
           pip install -r requirements-dev.txt
-          py.test -s -v --cov-config .coveragerc --cov=pywavesurfer --flake8
+          py.test -s -v --cov-config .coveragerc --cov=pywavesurfer 
       - name: Coveralls Parallel
         if: matrix.os == 'ubuntu-latest'
         uses: AndreMiras/coveralls-python-action@develop
