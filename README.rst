@@ -26,7 +26,7 @@ Example usage
 
 
 Description of the content can be found in the documentation
-`here <http://wavesurfer.janelia.org/manual/index.html#reading-acquired-data>`_.
+`here <https://wavesurfer.janelia.org/manual-0.945/index.html#reading-acquired-data>`_.
 
 Copyright
 ---------
