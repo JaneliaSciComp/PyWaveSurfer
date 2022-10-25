@@ -7,7 +7,7 @@ from packaging.version import parse as parse_version
 from packaging.specifiers import SpecifierSet
 
 # the latest version pywavesurfer was tested against
-_latest_version = 0.97
+_latest_version = 0.982
 _over_version_1 = SpecifierSet(">=1.0")
 
 # from pywavesurfer.ws import * will only import loadDataFile
