@@ -99,6 +99,8 @@ Version History
 
 0.0.8    Sep 19, 2022 Updated dependencies, drop python 3.7, added 3.10.
 
+0.0.9    Jan 23, 2023 Updated dependencies.
+
 .. |Updates| image:: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/shield.svg
    :target: https://pyup.io/repos/github/JaneliaSciComp/PyWaveSurfer/
 .. |Build Status| image:: https://github.com/JaneliaSciComp/PyWaveSurfer/actions/workflows/main.yml/badge.svg
