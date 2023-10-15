@@ -54,18 +54,17 @@ class PyWaveSurferData:
 
         self.analog_channel_scales, self.analog_scaling_coefficients, self.n_a_i_channels = self.get_scaling_coefficients()
 
-    def close_file(self):
-        if not self.file.closed():
-            self.file.close()
-
     def __enter__(self):
         """ This and `__exit__` ensure the  class can be
         used in a `with` statement.
         """
         return self
 
-    def __exit__(self):
+    def __exit__(self, exception_type, exception_value, traceback):
         self.close_file()
+
+    def close_file(self):
+        self.file.close()
 
     # ----------------------------------------------------------------------------------
     # Fill Metadata Dict
@@ -247,7 +246,7 @@ class PyWaveSurferData:
         the `format_string` argument passed during class construction.
         """
         ordered_sweep_names = self.get_ordered_sweep_names()
-        sweep_name = ordered_field_names[segment_index]
+        sweep_name = ordered_sweep_names[segment_index]
 
         # Index out the data and scale if required.
         if sweep_name[0:5] == "sweep":
@@ -276,7 +275,8 @@ class PyWaveSurferData:
 
     def get_ordered_sweep_names(self):
         """ Take the data field names (e.g. sweep_0001, sweep_0002), ensure they
-        are in the correct order and index according to `segment_index`.
+        are in the correct order and index according to `segment_index`. Note
+        this function will treat 'sweep' or 'trial' as the same.
         """
         field_names = [name for name in self.file if name[0:5] in ["sweep", "trial"]]
         sweep_nums = [int(ele[6:]) for ele in field_names]
@@ -289,6 +289,7 @@ class PyWaveSurferData:
         A convenience function to load into the `data_file_as_dict`
         all data in the file.
         """
+        return_scaled = False if self.format_string == "raw" else True
         idx = 0
         for field_name in self.file:
 
@@ -299,7 +300,7 @@ class PyWaveSurferData:
                 else:
                     num_samples = self.file[field_name].size
 
-                scaled_analog_data = self.get_traces(segment_index=idx, start_frame=0, end_frame=num_samples)
+                scaled_analog_data = self.get_traces(segment_index=idx, start_frame=0, end_frame=num_samples, return_scaled=return_scaled)
 
                 if field_name[0:5] == "sweep":
                     self.data_file_as_dict[field_name]["analogScans"] = scaled_analog_data
