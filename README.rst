@@ -24,7 +24,7 @@ Example usage
     # to get the raw analog channels in int16:
     data_as_dict = ws.loadDataFile(filename='path/to/file.h5', format_string='raw' )
     # lazy-loading of subsets of the data is also possible
-    with ws.PyWaveSurferData(path, format_string="double") as wavesurfer_file:
+    with ws.PyWaveSurferData('path/to/file.h5', format_string="double") as wavesurfer_file:
         sweep_1_subset = wavesurfer_file.get_traces(segment_index=0, start_frame=0, end_frame=500)
         sweep_2_subset = wavesurfer_file.get_traces(segment_index=1, start_frame=1, end_frame=500)
 
