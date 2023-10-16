@@ -361,3 +361,76 @@ def test_arbitrary_on_matrix_two_coeffs_single():
     y = ws.scaled_single_analog_data_from_raw(x, channel_scale, adc_coefficients)
     assert y.dtype == 'float32'
     assert (y_theoretical == y).all()
+
+
+# --------------------------------------------------------------------------------------
+# Testing Lazy Loading /
+# --------------------------------------------------------------------------------------
+
+@pytest.mark.parametrize("filename", ["30_kHz_sampling_rate_0p913_0001.h5", "30_kHz_sampling_rate_0p913_0001.h5",
+                                      "29997_Hz_sampling_rate_0p912_0001.h5", "29997_Hz_sampling_rate_0p913_0001.h5",
+                                      "ws_0p933_data_0001.h5", "ws_v1p0p2_data.h5",
+                                      "ws_0p74_data_0001.h5", "ws_0p97_data_0001.h5"]
+                         )
+@pytest.mark.parametrize("indicies", [(0, 1), (0, 500), (250, 1250), (653, "max")])
+def test_lazy_loading_one_sweep(filename, indicies):
+    """
+    Check that data indexed with `get_traces` is correct for all
+    1-sweep (or trial) test file. Scaling is not tested here.
+    """
+    this_file_path = os.path.realpath(__file__)
+    this_dir_name = os.path.dirname(this_file_path)
+    file_name = os.path.join(this_dir_name, filename)
+
+    start_idx, end_idx = indicies
+
+    data = ws.PyWaveSurferData(file_name, format_string="raw")
+
+    if filename in ["ws_0p74_data_0001.h5"]:
+        true_data = np.array(data.file["trial_0001"])
+    else:
+        true_data = np.array(data.file["sweep_0001"]["analogScans"])
+
+    if end_idx == "max":
+        end_idx = true_data.size
+
+    test_data = data.get_traces(0, start_idx, end_idx, return_scaled=False)
+    assert np.array_equal(true_data[:, start_idx:end_idx], test_data)
+
+
+@pytest.mark.parametrize("indices", [(0, 1), (0, 500), (250, 1250), (653, "max")])
+@pytest.mark.parametrize("format", ["raw", "single", "double"])
+def test_lazy_loading_three_sweeps(indices, format):
+    """
+    Check that `test2.h5` data file is indexed corrected with
+    `get_traces()` across all three sweeps. Test scaling the data also.
+    Note the coefficients themselves are taken from `PyWaveSurferData`
+    directly and not tested as they are tested elsewhere.
+    """
+    this_file_path = os.path.realpath(__file__)
+    this_dir_name = os.path.dirname(this_file_path)
+    file_name = os.path.join(this_dir_name, "test2.h5")
+
+    start_idx, end_idx = indices
+
+    return_scaled = False if format == "raw" else True
+
+    for sweep_idx, sweep_id in enumerate(["sweep_0001", "sweep_0002", "sweep_0003"]):
+
+        data = ws.PyWaveSurferData(file_name, format_string=format)
+        true_data = np.array(data.file[sweep_id]["analogScans"])
+
+        if format != "raw":
+            scaling_func = (ws.scaled_double_analog_data_from_raw
+                            if format == "double"
+                            else ws.scaled_single_analog_data_from_raw)
+            true_data = scaling_func(true_data, data.analog_channel_scales, data.analog_scaling_coefficients)
+
+        if end_idx == "max":
+            end_idx = true_data.size
+
+        test_data = data.get_traces(sweep_idx, start_idx, end_idx, return_scaled=return_scaled)
+
+        assert np.array_equal(true_data[:, start_idx:end_idx], test_data)
+
+
