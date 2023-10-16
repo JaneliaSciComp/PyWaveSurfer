@@ -26,7 +26,7 @@ Example usage
     # lazy-loading of subsets of the data is also possible
     with ws.PyWaveSurferData('path/to/file.h5', format_string="double") as wavesurfer_file:
         sweep_1_subset = wavesurfer_file.get_traces(segment_index=0, start_frame=0, end_frame=500)
-        sweep_2_subset = wavesurfer_file.get_traces(segment_index=1, start_frame=1, end_frame=500)
+        sweep_2_subset = wavesurfer_file.get_traces(segment_index=1, start_frame=0, end_frame=500)
 
 Description of the content can be found in the documentation
 `here <https://wavesurfer.janelia.org/manual-0.945/index.html#reading-acquired-data>`_.
